@@ -98,7 +98,6 @@
         /* ========================================= */
         .reveal {
             opacity: 0;
-            /* Ubah dari 40px menjadi 25px agar pergerakannya lebih halus saat dilooping */
             transform: translateY(25px); 
             transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); 
             will-change: opacity, transform;
@@ -121,24 +120,29 @@
 
     <!-- ================= 0. NAVBAR ================= -->
     <nav class="fixed top-0 w-full z-50 bg-[#0b0f19] border-b-4 border-indigo-600 shadow-[0_4px_0_0_rgba(79,70,229,0.5)]">
-        <div class="max-w-5xl mx-auto px-5 md:px-12 py-3 flex justify-center md:justify-between items-center">
+        <!-- flex justify-between agar logo kiri, hamburger kanan -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-5 md:px-12 py-3 flex justify-between items-center relative">
             
-            <!-- Brand / Logo -->
-            <a href="#" class="hidden md:flex items-center gap-3 font-pixel text-indigo-400 text-[10px] tracking-widest hover:text-white group transition-colors">
-                
-                <!-- Gambar Logo Pixel Custom -->
-                <!-- Pastikan nama file gambarnya sesuai dengan yang Anda simpan di folder image -->
+            <!-- Brand / Logo (Sekarang tetap tampil di Mobile) -->
+            <a href="#" class="flex items-center gap-2 md:gap-3 font-pixel text-indigo-400 text-[8px] sm:text-[10px] tracking-widest hover:text-white group transition-colors z-20">
                 <img src="image/LogoNav.png" alt="Logo Pixel" class="w-8 h-8 md:w-12 md:h-12 rounded-md object-cover group-hover:scale-110 transition-all duration-300 group-hover:drop-shadow-[0_0_10px_rgba(220,38,38,0.9)]" style="image-rendering: pixelated;">
-                
                 <span class="group-hover:scale-110 transition-all duration-300 group-hover:drop-shadow-[0_0_10px_rgba(220,38,38,0.9)]">RIZQI<span class="text-white">_RADITYA</span></span>
             </a>
+
+            <!-- Hamburger Button (Mobile Only) -->
+            <button id="hamburger-btn" class="md:hidden flex flex-col justify-center items-center gap-1.5 p-2 bg-[#111827] border-2 border-[#334155] hover:border-indigo-500 rounded focus:outline-none transition-colors z-20">
+                <span class="block w-5 h-0.5 bg-indigo-400"></span>
+                <span class="block w-5 h-0.5 bg-indigo-400"></span>
+                <span class="block w-5 h-0.5 bg-indigo-400"></span>
+            </button>
             
             <!-- Navigation Links -->
-            <ul class="flex gap-3 md:gap-6 font-pixel text-[9px] md:text-xs text-slate-300">
+            <!-- Tambahan class untuk absolute dropdown di mobile dan reset di desktop -->
+            <ul id="nav-menu" class="hidden md:flex flex-col md:flex-row absolute md:static top-[100%] left-0 w-full md:w-auto bg-[#0b0f19] md:bg-transparent border-b-4 border-indigo-600 md:border-b-0 p-5 md:p-0 gap-3 md:gap-6 font-pixel text-[9px] md:text-xs text-slate-300 shadow-[0_4px_0_0_rgba(79,70,229,0.5)] md:shadow-none z-10 transition-all duration-300">
                 <!-- PROFILE -->
                 <li>
-                    <a href="#profile" class="group flex items-center gap-2 px-3 py-2 bg-[#0b0f19] border-2 border-transparent hover:border-emerald-500 hover:text-emerald-400 rounded hover:shadow-[3px_3px_0_0_#10b981] active:translate-y-[3px] active:translate-x-[3px] active:shadow-none transition-all">
-                        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" shape-rendering="crispEdges" class="opacity-70 group-hover:opacity-100 group-hover:animate-bounce">
+                    <a href="#profile" class="nav-link group flex items-center justify-center md:justify-start gap-2 w-full px-3 py-3 md:py-2 bg-[#0b0f19] border-2 border-transparent hover:border-emerald-500 hover:text-emerald-400 rounded hover:shadow-[3px_3px_0_0_#10b981] active:translate-y-[3px] active:translate-x-[3px] active:shadow-none transition-all">
+                        <svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges" class="w-3 h-3 sm:w-4 sm:h-4 opacity-70 group-hover:opacity-100 group-hover:animate-bounce">
                             <rect x="6" y="2" width="4" height="1" />
                             <rect x="5" y="3" width="6" height="4" />
                             <rect x="6" y="7" width="4" height="1" />
@@ -151,8 +155,8 @@
 
                 <!-- PROJECTS -->
                 <li>
-                    <a href="#projects" class="group flex items-center gap-2 px-3 py-2 bg-[#0b0f19] border-2 border-transparent hover:border-amber-500 hover:text-amber-400 rounded hover:shadow-[3px_3px_0_0_#f59e0b] active:translate-y-[3px] active:translate-x-[3px] active:shadow-none transition-all">
-                        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" shape-rendering="crispEdges" class="opacity-70 group-hover:opacity-100 group-hover:-rotate-12 transition-transform">
+                    <a href="#projects" class="nav-link group flex items-center justify-center md:justify-start gap-2 w-full px-3 py-3 md:py-2 bg-[#0b0f19] border-2 border-transparent hover:border-amber-500 hover:text-amber-400 rounded hover:shadow-[3px_3px_0_0_#f59e0b] active:translate-y-[3px] active:translate-x-[3px] active:shadow-none transition-all">
+                        <svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges" class="w-3 h-3 sm:w-4 sm:h-4 opacity-70 group-hover:opacity-100 group-hover:-rotate-12 transition-transform">
                             <rect x="2" y="3" width="5" height="2" />
                             <rect x="2" y="5" width="12" height="8" />
                             <rect x="3" y="6" width="10" height="1" class="fill-[#0b0f19]" opacity="0.5" />
@@ -163,8 +167,8 @@
 
                 <!-- ACHIEVEMENTS -->
                 <li>
-                    <a href="#achievements" class="group flex items-center gap-2 px-3 py-2 bg-[#0b0f19] border-2 border-transparent hover:border-purple-500 hover:text-purple-400 rounded hover:shadow-[3px_3px_0_0_#a855f7] active:translate-y-[3px] active:translate-x-[3px] active:shadow-none transition-all">
-                        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" shape-rendering="crispEdges" class="opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-transform">
+                    <a href="#achievements" class="nav-link group flex items-center justify-center md:justify-start gap-2 w-full px-3 py-3 md:py-2 bg-[#0b0f19] border-2 border-transparent hover:border-purple-500 hover:text-purple-400 rounded hover:shadow-[3px_3px_0_0_#a855f7] active:translate-y-[3px] active:translate-x-[3px] active:shadow-none transition-all">
+                        <svg viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges" class="w-3 h-3 sm:w-4 sm:h-4 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-transform">
                             <rect x="5" y="2" width="6" height="5" />
                             <rect x="3" y="3" width="2" height="3" />
                             <rect x="11" y="3" width="2" height="3" />
@@ -180,47 +184,45 @@
     </nav>
 
     <!-- Main Container -->
-    <main class="max-w-5xl mx-auto space-y-16 relative pt-32 px-5 md:px-12 pb-16">
+    <main class="max-w-5xl mx-auto space-y-12 sm:space-y-16 relative pt-28 sm:pt-32 px-4 sm:px-5 md:px-12 pb-16">
 
         <!-- ================= 1. HERO SECTION (PROFILE) ================= -->
         <section id="profile" class="section-offset">
-            <div class="pixel-card p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row gap-10 items-center reveal">
+            <div class="pixel-card p-6 sm:p-8 md:p-12 relative overflow-hidden flex flex-col md:flex-row gap-8 md:gap-10 items-center reveal">
                 <!-- Decorative Ornament -->
                 <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-600 rounded-full blur-[80px] opacity-40 pointer-events-none"></div>
                 
                 <!-- Profile Picture Slot -->
                 <div class="shrink-0 relative group z-10">
-                    <!-- Ganti src di bawah dengan URL foto asli Anda -->
-                    <div class="w-56 h-56 md:w-56 md:h-56 rounded-2xl border-[4px] border-indigo-500 overflow-hidden relative shadow-[6px_6px_0_0_#4338ca]">
+                    <div class="w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-2xl border-[4px] border-indigo-500 overflow-hidden relative shadow-[6px_6px_0_0_#4338ca]">
                         <img src="image/rizqiR.jpeg" alt="Rizqi Raditya Lufifahendri" class="w-full h-full object-cover">
                     </div>
                     <!-- Status Bar below photo -->
-                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-black border-2 border-indigo-500 text-indigo-400 font-pixel text-[8px] px-3 py-1.5 rounded-full whitespace-nowrap">
+                    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-black border-2 border-indigo-500 text-indigo-400 font-pixel text-[7px] sm:text-[8px] px-2 sm:px-3 py-1 sm:py-1.5 rounded-full whitespace-nowrap">
                         LVL 6 IT STUDENT
                     </div>
                 </div>
 
                 <!-- Profile Details -->
-                <div class="flex-1 text-center md:text-left z-10">
+                <div class="flex-1 text-center md:text-left z-10 mt-4 md:mt-0">
                     <!-- Internship Badge -->
-                    <div class="inline-flex items-center bg-[#064e3b] border-2 border-[#10b981] text-[#34d399] px-3 py-1.5 rounded mb-6 badge-glow">
-                        <div class="w-2 h-2 bg-[#10b981] rounded-full mr-2 animate-pulse"></div>
-                        <span class="font-pixel text-[8px] md:text-[10px] tracking-wider uppercase">Available for Internship</span>
+                    <div class="inline-flex items-center bg-[#064e3b] border-2 border-[#10b981] text-[#34d399] px-2 sm:px-3 py-1 sm:py-1.5 rounded mb-4 sm:mb-6 badge-glow">
+                        <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#10b981] rounded-full mr-2 animate-pulse"></div>
+                        <span class="font-pixel text-[7px] sm:text-[8px] md:text-[10px] tracking-wider uppercase">Available for Internship</span>
                     </div>
 
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
-                        Rizqi Raditya <span class="text-indigo-500 block md:inline mt-2 md:mt-0">Lufifahendri</span>
+                    <!-- Text size adjusted to prevent breaking on very small mobile displays -->
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
+                        Rizqi Raditya <span class="text-indigo-500 block md:inline mt-1 md:mt-0">Lufifahendri</span>
                     </h1>
-                    <h2 class="text-lg md:text-xl text-slate-400 font-medium mb-6">Information Technology Student | 6th Semester</h2>
+                    <h2 class="text-sm sm:text-lg md:text-xl text-slate-400 font-medium mb-4 sm:mb-6">Information Technology Student | 6th Semester</h2>
                     
-                    <!-- Polished About Me -->
-                    <p class="text-slate-300 text-[15px] md:text-lg leading-relaxed mb-8 max-w-2xl">
+                    <p class="text-slate-300 text-[13px] sm:text-[15px] md:text-lg leading-relaxed mb-6 sm:mb-8 max-w-2xl">
                         Hello! I am an Information Technology student with a strong passion for crafting interactive and user-centric digital experiences. My main focus lies in <span class="text-indigo-400 font-bold">Frontend Development</span> and <span class="text-indigo-400 font-bold">UI/UX Design</span>, where I seamlessly blend programming logic with captivating visual aesthetics. Outside the realm of coding, I stay active through sports and immerse myself in video games to discover fresh creative inspirations.
                     </p>
 
-                   <a href="dokumen/CV_Rizqi_Poltek.pdf" target="_blank" class="btn-pixel group font-pixel text-[10px] md:text-xs px-6 py-4 inline-flex items-center rounded-lg">
-                        <!-- Ikon SVG akan bergerak turun sedikit saat tombol di-hover -->
-                        <svg class="w-5 h-5 mr-3 transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <a href="dokumen/CV_Rizqi_Poltek.pdf" target="_blank" class="btn-pixel group font-pixel text-[8px] sm:text-[10px] md:text-xs px-4 sm:px-6 py-3 sm:py-4 inline-flex items-center rounded-lg">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 transition-transform duration-300 group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
                         DOWNLOAD CV
@@ -231,37 +233,33 @@
 
         <!-- ================= 2. EDUCATION JOURNEY ================= -->
         <section class="reveal">
-            <div class="flex items-center gap-4 mb-8">
-                <!-- Ganti "image/meja-pixel.png" dengan path/nama file gambar yang Anda simpan -->
-                <img src="image/Table.webp" alt="Icon" class="w-8 h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
-                <h2 class="font-pixel text-base md:text-xl text-white">EDUCATION_JOURNEY</h2>
+            <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <img src="image/Table.webp" alt="Icon" class="w-7 h-7 sm:w-8 sm:h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
+                <h2 class="font-pixel text-[11px] sm:text-sm md:text-xl text-white">EDUCATION_JOURNEY</h2>
             </div>
             
-            <div class="pixel-card p-8 border-yellow-500/50 hover:border-yellow-400 hover:shadow-[9px_9px_0_0_rgba(250,204,21,0.6)]">
-                <div class="relative border-l-2 border-slate-600 ml-3 md:ml-4 space-y-8">
+            <div class="pixel-card p-6 sm:p-8 border-yellow-500/50 hover:border-yellow-400 hover:shadow-[9px_9px_0_0_rgba(250,204,21,0.6)]">
+                <div class="relative border-l-2 border-slate-600 ml-2 md:ml-4 space-y-8">
                     
-                    <!-- Politeknik Negeri Bali -->
-                    <div class="relative pl-8">
+                    <div class="relative pl-6 sm:pl-8">
                         <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-yellow-400 border-4 border-[#0b0f19]"></div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-1">Politeknik Negeri Bali</h3>
-                        <p class="text-indigo-400 font-medium mb-2 text-sm md:text-base">Information Technology (6th Semester)</p>
-                        <span class="inline-block bg-slate-800 text-slate-300 font-pixel text-[9px] px-2 py-1 rounded">2023 - PRESENT</span>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1">Politeknik Negeri Bali</h3>
+                        <p class="text-indigo-400 font-medium mb-2 text-xs sm:text-sm md:text-base">Information Technology (6th Semester)</p>
+                        <span class="inline-block bg-slate-800 text-slate-300 font-pixel text-[7.5px] sm:text-[9px] px-2 py-1 rounded">2023 - PRESENT</span>
                     </div>
                     
-                    <!-- SMA Muhammadiyah 1 -->
-                    <div class="relative pl-8">
+                    <div class="relative pl-6 sm:pl-8">
                         <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-slate-500 border-4 border-[#0b0f19]"></div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-1">SMA Muhammadiyah 1</h3>
-                        <p class="text-slate-400 font-medium mb-2 text-sm md:text-base">Senior High School</p>
-                        <span class="inline-block bg-slate-800 text-slate-300 font-pixel text-[9px] px-2 py-1 rounded">2020 - 2023</span>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1">SMA Muhammadiyah 1</h3>
+                        <p class="text-slate-400 font-medium mb-2 text-xs sm:text-sm md:text-base">Senior High School</p>
+                        <span class="inline-block bg-slate-800 text-slate-300 font-pixel text-[7.5px] sm:text-[9px] px-2 py-1 rounded">2020 - 2023</span>
                     </div>
                     
-                    <!-- SMP Muhammadiyah 2 -->
-                    <div class="relative pl-8">
+                    <div class="relative pl-6 sm:pl-8">
                         <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-slate-500 border-4 border-[#0b0f19]"></div>
-                        <h3 class="text-lg md:text-xl font-bold text-white mb-1">SMP Muhammadiyah 2</h3>
-                        <p class="text-slate-400 font-medium mb-2 text-sm md:text-base">Junior High School</p>
-                        <span class="inline-block bg-slate-800 text-slate-300 font-pixel text-[9px] px-2 py-1 rounded">2017 - 2020</span>
+                        <h3 class="text-base sm:text-lg md:text-xl font-bold text-white mb-1">SMP Muhammadiyah 2</h3>
+                        <p class="text-slate-400 font-medium mb-2 text-xs sm:text-sm md:text-base">Junior High School</p>
+                        <span class="inline-block bg-slate-800 text-slate-300 font-pixel text-[7.5px] sm:text-[9px] px-2 py-1 rounded">2017 - 2020</span>
                     </div>
                 </div>
             </div>
@@ -269,166 +267,162 @@
 
        <!-- ================= 3. TECH SKILLS & TOOLS ================= -->
         <section class="reveal">
-            <div class="flex items-center gap-4 mb-8">
-                <!-- Ganti "image/meja-pixel.png" dengan path/nama file gambar yang Anda simpan -->
-                <img src="image/Hand_Skill.webp" alt="Icon" class="w-8 h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
-                <h2 class="font-pixel text-base md:text-xl text-white">TECH_SKILLS & TOOLS</h2>
+            <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                <img src="image/Hand_Skill.webp" alt="Icon" class="w-7 h-7 sm:w-8 sm:h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
+                <h2 class="font-pixel text-[11px] sm:text-sm md:text-xl text-white">TECH_SKILLS & TOOLS</h2>
             </div>
 
-            <!-- Card Utama -->
-            <div class="pixel-card p-8 md:p-12 border-blue-500/50 hover:border-blue-400 hover:shadow-[9px_9px_0_0_rgba(96,165,250,0.6)]">
+            <div class="pixel-card p-6 sm:p-8 md:p-12 border-blue-500/50 hover:border-blue-400 hover:shadow-[9px_9px_0_0_rgba(96,165,250,0.6)]">
                 
-                <!-- Grid Container (6 Kolom di Laptop agar pas 18 Item) -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-10 gap-x-4">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-y-8 sm:gap-y-10 gap-x-4">
                     
                     <!-- ====== FRONTEND ====== -->
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(227,79,38,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">HTML</h3>
-                        <span class="font-sans text-xs text-slate-500">Advanced</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">HTML</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Advanced</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(21,114,182,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">CSS</h3>
-                        <span class="font-sans text-xs text-slate-500">Advanced</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">CSS</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Advanced</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(247,223,30,0.6)] rounded-sm transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">JavaScript</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">JavaScript</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(65,184,131,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Vue.js</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Vue.js</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React.js" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(97,218,251,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">React.js</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">React.js</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Tailwind CSS</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Tailwind CSS</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <!-- ====== BACKEND ====== -->
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" alt="PHP" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(119,123,179,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">PHP</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">PHP</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" alt="Laravel" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(255,45,32,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Laravel</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Laravel</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(83,158,67,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Node.js</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Node.js</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <!-- ====== DATABASE ====== -->
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(0,117,143,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">MySQL</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">MySQL</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" alt="SQLite" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(15,128,204,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">SQLite</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">SQLite</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" alt="Supabase" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(63,207,142,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Supabase</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Supabase</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <!-- ====== UI/UX TOOLS ====== -->
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(242,78,30,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Figma</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Figma</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/google/google-original.svg" alt="Google Stitch" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(66,133,244,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Google Stitch</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Google Stitch</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                     <!-- ====== OTHERS ====== -->
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(240,80,50,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">Git</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">Git</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2 bg-slate-200 rounded-full p-1 border-2 border-transparent group-hover:border-white">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2 bg-slate-200 rounded-full p-1 border-2 border-transparent group-hover:border-white">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">GitHub</h3>
-                        <span class="font-sans text-xs text-slate-500">Intermediate</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">GitHub</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Intermediate</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2">
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2">
                             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="VS Code" class="w-full h-full object-contain group-hover:drop-shadow-[0_0_8px_rgba(0,101,169,0.6)] transition-all">
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">VS Code</h3>
-                        <span class="font-sans text-xs text-slate-500">Advanced</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">VS Code</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Advanced</span>
                     </div>
 
                     <div class="flex flex-col items-center text-center group cursor-default">
-                        <div class="h-10 w-10 md:h-12 md:w-12 mb-3 transition-transform duration-300 group-hover:-translate-y-2 flex items-center justify-center">
-                            <!-- Icon roket untuk AntiGravity -->
+                        <div class="h-10 w-10 md:h-12 md:w-12 mb-2 sm:mb-3 transition-transform duration-300 group-hover:-translate-y-2 flex items-center justify-center">
                             <span class="text-3xl md:text-4xl group-hover:drop-shadow-[0_0_8px_rgba(251,146,60,0.8)] transition-all">🚀</span>
                         </div>
-                        <h3 class="font-sans font-bold text-slate-200 text-sm tracking-wide group-hover:text-white">AntiGravity</h3>
-                        <span class="font-sans text-xs text-slate-500">Basic</span>
+                        <h3 class="font-sans font-bold text-slate-200 text-xs sm:text-sm tracking-wide group-hover:text-white">AntiGravity</h3>
+                        <span class="font-sans text-[10px] sm:text-xs text-slate-500">Basic</span>
                     </div>
 
                 </div>
@@ -437,68 +431,63 @@
 
        <!-- ================= 4. SELECTED PROJECTS ================= -->
         <section id="projects" class="section-offset">
-            <div class="flex items-center gap-4 mb-8 reveal">
-                <!-- Ganti "image/meja-pixel.png" dengan path/nama file gambar yang Anda simpan -->
-                <img src="image/Bulldozer.webp" alt="Icon" class="w-8 h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
-                <h2 class="font-pixel text-base md:text-xl text-white">SELECTED_PROJECTS</h2>
+            <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 reveal">
+                <img src="image/Bulldozer.webp" alt="Icon" class="w-7 h-7 sm:w-8 sm:h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
+                <h2 class="font-pixel text-[11px] sm:text-sm md:text-xl text-white">SELECTED_PROJECTS</h2>
             </div>
 
-            <!-- Mengubah Grid dari 3 kolom menjadi 2 kolom agar gambar jauh lebih lebar dan besar -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                 
                 <!-- Project 1: Balinara -->
                 <div class="pixel-card flex flex-col overflow-hidden border-orange-500/50 hover:border-orange-400 hover:shadow-[9px_9px_0_0_rgba(251,146,60,0.6)] reveal delay-100">
-                    <!-- Tinggi gambar diubah menjadi h-64 / h-72 agar proporsional dengan lebarnya -->
-                    <div class="w-full h-64 sm:h-72 border-b-2 border-slate-700 bg-slate-800 overflow-hidden relative group">
+                    <div class="w-full h-48 sm:h-64 md:h-72 border-b-2 border-slate-700 bg-slate-800 overflow-hidden relative group">
                         <img src="image/Balinara.png" alt="Balinara Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-6 md:p-8 flex-1 flex flex-col">
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3 tracking-wide">BALINARA</h3>
-                        <p class="text-slate-400 text-sm md:text-base mb-6 flex-1 leading-relaxed">
+                    <div class="p-5 sm:p-6 md:p-8 flex-1 flex flex-col">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-wide">BALINARA</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 flex-1 leading-relaxed">
                             A web-based digital platform designed to be your ultimate guide in exploring the captivating beauty of Bali.
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="bg-orange-900/40 text-orange-300 border border-orange-500/50 font-pixel text-[8px] px-3 py-2 rounded">Vue.js</span>
-                            <span class="bg-orange-900/40 text-orange-300 border border-orange-500/50 font-pixel text-[8px] px-3 py-2 rounded">Django</span>
-                            <span class="bg-orange-900/40 text-orange-300 border border-orange-500/50 font-pixel text-[8px] px-3 py-2 rounded">MySQL</span>
+                        <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
+                            <span class="bg-orange-900/40 text-orange-300 border border-orange-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">Vue.js</span>
+                            <span class="bg-orange-900/40 text-orange-300 border border-orange-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">Django</span>
+                            <span class="bg-orange-900/40 text-orange-300 border border-orange-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">MySQL</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2: Neptunethift -->
                 <div class="pixel-card flex flex-col overflow-hidden border-indigo-500/50 hover:border-indigo-400 hover:shadow-[9px_9px_0_0_rgba(129,140,248,0.6)] reveal delay-200">
-                    <div class="w-full h-64 sm:h-72 border-b-2 border-slate-700 bg-slate-800 overflow-hidden relative group">
+                    <div class="w-full h-48 sm:h-64 md:h-72 border-b-2 border-slate-700 bg-slate-800 overflow-hidden relative group">
                         <img src="image/NeptuneThrift.png" alt="Neptunethift E-commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <div class="p-6 md:p-8 flex-1 flex flex-col">
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3 tracking-wide">NEPTUNETHIFT</h3>
-                        <p class="text-slate-400 text-sm md:text-base mb-6 flex-1 leading-relaxed">
+                    <div class="p-5 sm:p-6 md:p-8 flex-1 flex flex-col">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-wide">NEPTUNETHIFT</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm md:text-base mb-4 sm:mb-6 flex-1 leading-relaxed">
                             A Web-Based Shoe Thrifting E-commerce Catalog System engineered to simplify preloved goods transactions seamlessly.
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="bg-indigo-900/40 text-indigo-300 border border-indigo-500/50 font-pixel text-[8px] px-3 py-2 rounded">Vue.js</span>
-                            <span class="bg-indigo-900/40 text-indigo-300 border border-indigo-500/50 font-pixel text-[8px] px-3 py-2 rounded">Next.js / JS</span>
-                            <span class="bg-indigo-900/40 text-indigo-300 border border-indigo-500/50 font-pixel text-[8px] px-3 py-2 rounded">MySQL</span>
+                        <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
+                            <span class="bg-indigo-900/40 text-indigo-300 border border-indigo-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">Vue.js</span>
+                            <span class="bg-indigo-900/40 text-indigo-300 border border-indigo-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">Next.js / JS</span>
+                            <span class="bg-indigo-900/40 text-indigo-300 border border-indigo-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">MySQL</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 3: Gasngo (FEATURED PROJECT - Melebar Penuh 2 Kolom di Laptop) -->
+                <!-- Project 3: Gasngo -->
                 <div class="pixel-card flex flex-col lg:flex-row overflow-hidden border-rose-500/50 hover:border-rose-400 hover:shadow-[9px_9px_0_0_rgba(251,113,133,0.6)] lg:col-span-2 reveal delay-300">
-                    <!-- Gambar dibuat mengambil 60% lebar layar di desktop -->
-                    <div class="w-full lg:w-3/5 h-64 sm:h-80 lg:h-auto border-b-2 lg:border-b-0 lg:border-r-2 border-slate-700 bg-slate-800 overflow-hidden relative group">
+                    <div class="w-full lg:w-3/5 h-48 sm:h-64 lg:h-auto border-b-2 lg:border-b-0 lg:border-r-2 border-slate-700 bg-slate-800 overflow-hidden relative group">
                         <img src="image/GASNGO.png" alt="GASNGO Car Rental" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
-                    <!-- Teks mengambil 40% lebar layar -->
-                    <div class="w-full lg:w-2/5 p-6 md:p-8 flex flex-col justify-center">
-                        <h3 class="text-xl md:text-2xl font-bold text-white mb-3 tracking-wide">GASNGO</h3>
-                        <p class="text-slate-400 text-sm md:text-base mb-8 flex-1 lg:flex-none leading-relaxed">
+                    <div class="w-full lg:w-2/5 p-5 sm:p-6 md:p-8 flex flex-col justify-center">
+                        <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 tracking-wide">GASNGO</h3>
+                        <p class="text-slate-400 text-xs sm:text-sm md:text-base mb-6 sm:mb-8 flex-1 lg:flex-none leading-relaxed">
                             A Modern Web-Based Car Rental Information System that streamlines the vehicle fleet management and booking process.
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="bg-rose-900/40 text-rose-300 border border-rose-500/50 font-pixel text-[8px] px-3 py-2 rounded">Vue.js</span>
-                            <span class="bg-rose-900/40 text-rose-300 border border-rose-500/50 font-pixel text-[8px] px-3 py-2 rounded">JavaScript</span>
-                            <span class="bg-rose-900/40 text-rose-300 border border-rose-500/50 font-pixel text-[8px] px-3 py-2 rounded">Supabase</span>
+                        <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
+                            <span class="bg-rose-900/40 text-rose-300 border border-rose-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">Vue.js</span>
+                            <span class="bg-rose-900/40 text-rose-300 border border-rose-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">JavaScript</span>
+                            <span class="bg-rose-900/40 text-rose-300 border border-rose-500/50 font-pixel text-[6.5px] sm:text-[8px] px-2 sm:px-3 py-1.5 sm:py-2 rounded">Supabase</span>
                         </div>
                     </div>
                 </div>
@@ -507,67 +496,61 @@
 
         <!-- ================= 5. CERTIFICATES / ACHIEVEMENTS ================= -->
         <section id="achievements" class="section-offset">
-            <div class="flex items-center gap-4 mb-8 reveal">
-                <!-- Ganti "image/meja-pixel.png" dengan path/nama file gambar yang Anda simpan -->
-                <img src="image/Achievement.webp" alt="Icon" class="w-8 h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
-                <h2 class="font-pixel text-base md:text-xl text-white">ACHIEVEMENTS</h2>
+            <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8 reveal">
+                <img src="image/Achievement.webp" alt="Icon" class="w-7 h-7 sm:w-8 sm:h-8 md:w-14 md:h-14 object-contain" style="image-rendering: pixelated;">
+                <h2 class="font-pixel text-[11px] sm:text-sm md:text-xl text-white">ACHIEVEMENTS</h2>
             </div>
 
-            <!-- Grid 2 Kolom untuk Sertifikat -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Menggunakan md:grid-cols-2 agar di Tablet sudah membentuk 2 kolom agar tidak terlalu panjang -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
                 
-                <!-- Certificate 1: Sawah Cyber -->
-                <div class="pixel-card p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-100">
-                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-5 relative group">
+                <div class="pixel-card p-4 sm:p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-100">
+                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-4 sm:mb-5 relative group">
                         <img src="image/SawahCyber.png" alt="Sawah Cyber Security" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="text-center flex-1 flex flex-col justify-center">
-                        <h4 class="font-bold text-white text-base md:text-lg leading-tight mb-2">Sawah Cyber Security</h4>
-                        <p class="text-xs text-cyan-400 font-pixel text-[8px] leading-relaxed uppercase">Certificate of Competence</p>
+                        <h4 class="font-bold text-white text-sm sm:text-base md:text-lg leading-tight mb-2">Sawah Cyber Security</h4>
+                        <p class="text-xs text-cyan-400 font-pixel text-[7px] sm:text-[8px] leading-relaxed uppercase">Certificate of Competence</p>
                     </div>
                 </div>
 
-                <!-- Certificate 2: AWS -->
-                <div class="pixel-card p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-200">
-                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-5 relative group">
+                <div class="pixel-card p-4 sm:p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-200">
+                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-4 sm:mb-5 relative group">
                         <img src="image/AWS.png" alt="AWS Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="text-center flex-1 flex flex-col justify-center">
-                        <h4 class="font-bold text-white text-base md:text-lg leading-tight mb-2">AWS Academy Graduate</h4>
-                        <p class="text-xs text-cyan-400 font-pixel text-[8px] leading-relaxed uppercase">Intro to Cloud Semester 1</p>
+                        <h4 class="font-bold text-white text-sm sm:text-base md:text-lg leading-tight mb-2">AWS Academy Graduate</h4>
+                        <p class="text-xs text-cyan-400 font-pixel text-[7px] sm:text-[8px] leading-relaxed uppercase">Intro to Cloud Semester 1</p>
                     </div>
                 </div>
 
-                <!-- Certificate 3: Cisco (Sekarang masuk ke dalam grid biasa, tidak memanjang) -->
-                <div class="pixel-card p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-300">
-                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-5 relative group">
+                <div class="pixel-card p-4 sm:p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-300">
+                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-4 sm:mb-5 relative group">
                         <img src="image/CCNA.png" alt="Cisco Certificate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="text-center flex-1 flex flex-col justify-center">
-                        <h4 class="font-bold text-white text-base md:text-lg leading-tight mb-2">CCNA IT Cisco</h4>
-                        <p class="text-xs text-cyan-400 font-pixel text-[8px] leading-relaxed uppercase">Certificate of Course Completion</p>
+                        <h4 class="font-bold text-white text-sm sm:text-base md:text-lg leading-tight mb-2">CCNA IT Cisco</h4>
+                        <p class="text-xs text-cyan-400 font-pixel text-[7px] sm:text-[8px] leading-relaxed uppercase">Certificate of Course Completion</p>
                     </div>
                 </div>
 
-                <!-- Certificate 4: UKM Computer Club (BARU) -->
-                <div class="pixel-card p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-100">
-                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-5 relative group">
+                <div class="pixel-card p-4 sm:p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-100">
+                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-4 sm:mb-5 relative group">
                         <img src="image/UKM_Computer.jpg" alt="UKM Computer Club PNB" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="text-center flex-1 flex flex-col justify-center">
-                        <h4 class="font-bold text-white text-base md:text-lg leading-tight mb-2">UKM Computer Club PNB</h4>
-                        <p class="text-xs text-cyan-400 font-pixel text-[8px] leading-relaxed uppercase">Active Member</p>
+                        <h4 class="font-bold text-white text-sm sm:text-base md:text-lg leading-tight mb-2">UKM Computer Club PNB</h4>
+                        <p class="text-xs text-cyan-400 font-pixel text-[7px] sm:text-[8px] leading-relaxed uppercase">Active Member</p>
                     </div>
                 </div>
 
-                <!-- Certificate 5: CC Digital Talent 2024 (BARU & Dibuat ke tengah bawah) -->
-                <div class="pixel-card p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-200 lg:col-span-2 lg:w-3/4 lg:mx-auto">
-                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-5 relative group">
+                <div class="pixel-card p-4 sm:p-5 md:p-6 flex flex-col hover:border-cyan-400 hover:shadow-[6px_6px_0_0_rgba(34,211,238,0.5)] cursor-default reveal delay-200 md:col-span-2 lg:w-3/4 lg:mx-auto">
+                    <div class="w-full aspect-[1.414] rounded bg-slate-800 border-2 border-slate-600 overflow-hidden mb-4 sm:mb-5 relative group">
                         <img src="image/Lomba_CCDT.jpg" alt="Computer Club Digital Talent 2024" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                     </div>
                     <div class="text-center flex-1 flex flex-col justify-center">
-                        <h4 class="font-bold text-white text-base md:text-lg leading-tight mb-2">Computer Club Digital Talent 2024</h4>
-                        <p class="text-xs text-cyan-400 font-pixel text-[8px] leading-relaxed uppercase">Participant</p>
+                        <h4 class="font-bold text-white text-sm sm:text-base md:text-lg leading-tight mb-2">Computer Club Digital Talent 2024</h4>
+                        <p class="text-xs text-cyan-400 font-pixel text-[7px] sm:text-[8px] leading-relaxed uppercase">Participant</p>
                     </div>
                 </div>
                 
@@ -575,68 +558,86 @@
         </section>
 
         <!-- ================= 6. FOOTER (CONTACT) ================= -->
-        <footer class="pixel-card p-8 md:p-12 text-center border-t-4 border-indigo-500 border-l-0 border-r-0 border-b-0 rounded-none bg-slate-900/50 reveal">
-            <h2 class="font-pixel text-base md:text-xl text-white mb-10">CONTACT_ME</h2>
+        <footer class="pixel-card p-6 sm:p-8 md:p-12 text-center border-t-4 border-indigo-500 border-l-0 border-r-0 border-b-0 rounded-none bg-slate-900/50 reveal">
+            <h2 class="font-pixel text-[11px] sm:text-sm md:text-xl text-white mb-8 md:mb-10">CONTACT_ME</h2>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 mb-10">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 sm:gap-6 md:gap-10 mb-8 md:mb-10">
                 <!-- Location -->
-                <div class="flex items-center gap-3 text-slate-300 hover:text-white transition-colors">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    <span class="font-medium text-sm md:text-base">Denpasar, Bali - Indonesia</span>
+                <div class="flex items-center gap-2 sm:gap-3 text-slate-300 hover:text-white transition-colors">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="font-medium text-xs sm:text-sm md:text-base">Denpasar, Bali - Indonesia</span>
                 </div>
                 
                 <!-- Phone / WA -->
-                <a href="https://wa.me/6281558111799" target="_blank" class="flex items-center gap-3 text-slate-300 hover:text-green-400 transition-colors">
-                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    <span class="font-medium text-sm md:text-base">0815 5811 1799</span>
+                <a href="https://wa.me/6281558111799" target="_blank" class="flex items-center gap-2 sm:gap-3 text-slate-300 hover:text-green-400 transition-colors">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <span class="font-medium text-xs sm:text-sm md:text-base">0815 5811 1799</span>
                 </a>
 
                 <!-- Email -->
-                <a href="mailto:rzqraditya05@gmail.com" class="flex items-center gap-3 text-slate-300 hover:text-rose-400 transition-colors">
-                    <svg class="w-6 h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span class="font-medium text-sm md:text-base">rzqraditya05@gmail.com</span>
+                <a href="mailto:rzqraditya05@gmail.com" class="flex items-center gap-2 sm:gap-3 text-slate-300 hover:text-rose-400 transition-colors">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span class="font-medium text-xs sm:text-sm md:text-base">rzqraditya05@gmail.com</span>
                 </a>
             </div>
 
-            <div class="flex justify-center gap-6">
+            <div class="flex justify-center gap-4 sm:gap-6">
                 <!-- GitHub Icon -->
-                <a href="https://github.com/urmalevolent" target="_blank" class="p-3 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-white hover:text-white text-slate-400 transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#fff]">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+                <a href="https://github.com/urmalevolent" target="_blank" class="p-2.5 sm:p-3 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-white hover:text-white text-slate-400 transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#fff]">
+                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
                 </a>
                 <!-- LinkedIn Icon -->
-                <a href="https://www.linkedin.com/in/rizqi-raditya-lufifahendri" target="_blank" class="p-3 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-[#0A66C2] hover:text-[#0A66C2] text-slate-400 transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#0A66C2]">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg>
+                <a href="https://www.linkedin.com/in/rizqi-raditya-lufifahendri" target="_blank" class="p-2.5 sm:p-3 bg-slate-800 border-2 border-slate-600 rounded-lg hover:border-[#0A66C2] hover:text-[#0A66C2] text-slate-400 transition-all hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#0A66C2]">
+                    <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path></svg>
                 </a>
             </div>
             
-            <p class="mt-10 font-pixel text-[8px] text-slate-500">© 2026 RIZQI RADITYA LUFIFAHENDRI. BUILT WITH CSS AND CODE.</p>
+            <p class="mt-8 md:mt-10 font-pixel text-[6.5px] sm:text-[8px] text-slate-500">© 2026 RIZQI RADITYA LUFIFAHENDRI. BUILT WITH CSS AND CODE.</p>
         </footer>
 
     </main>
 
-    <!-- SCROLL ANIMATION SCRIPT -->
+    <!-- SCROLL ANIMATION & MOBILE MENU SCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // SCROLL ANIMATION
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                     } 
                     else {
-                        // Fitur looping diaktifkan
                         entry.target.classList.remove('active'); 
                     }
                 });
             }, {
-                // Agar tidak berlebihan, kita ubah threshold menjadi 0.15 
-                // (Elemen harus masuk 15% dulu baru dianimasikan, tidak asal muncul)
                 threshold: 0.15, 
-                // rootMargin 0px mencegah elemen menghilang/muncul saat hanya tersentuh sedikit ujung layar
                 rootMargin: "0px 0px 0px 0px"
             });
 
             const hiddenElements = document.querySelectorAll('.reveal');
             hiddenElements.forEach((el) => observer.observe(el));
+
+            // HAMBURGER MENU TOGGLE
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Buka/Tutup menu saat tombol di klik
+            hamburgerBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+                navMenu.classList.toggle('flex');
+            });
+
+            // Otomatis menutup menu ketika salah satu link diklik (khusus di mobile)
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 768) { // 768px adalah batas 'md' pada tailwind
+                        navMenu.classList.add('hidden');
+                        navMenu.classList.remove('flex');
+                    }
+                });
+            });
         });
     </script>
 </body>
